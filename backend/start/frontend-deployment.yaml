@@ -1,0 +1,27 @@
+
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: quiz-frontend
+  labels:
+    app: quiz-app
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: quiz-app
+        tier: frontend
+    spec:
+      containers:
+      - name: quiz-frontend
+        image: [FRONTEND_IMAGE_IDENTIFIER]
+        imagePullPolicy: Always
+        ports:
+        - name: http-server
+          containerPort: 8080
+        env:
+          - name: concrete-envoy-213218
+            value: [concrete-envoy-213218]
+          - name: GCLOUD_BUCKET
+            value: [GCLOUD_BUCKET]
