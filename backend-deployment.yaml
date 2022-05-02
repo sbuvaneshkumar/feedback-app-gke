@@ -18,10 +18,10 @@ spec:
     spec:
       containers:
       - name: quiz-backend
-        image: gcr.io/[PROJECTID]/quiz-backend
+        image: gcr.io/PROJECTID/quiz-backend
         imagePullPolicy: Always
         env:
           - name: PROJECTID
-            value: [PROJECTID]
+            value: PROJECTID
           - name: GCLOUD_BUCKET
-            value: [PROJECTID]-media
+            value: PROJECTID-media
