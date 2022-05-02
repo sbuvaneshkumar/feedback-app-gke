@@ -55,8 +55,8 @@ gcloud builds submit --timeout=1h -t gcr.io/$PROJECTID/quiz-frontend ./frontend/
 gcloud builds submit --timeout=1h -t gcr.io/$PROJECTID/quiz-backend ./backend/
 
 echo "Deploying to Container Engine"
-sed -i -e "s/\[PROJECTID\]/$PROJECTID/g" ./frontend-deployment.yaml
-sed -i -e "s/\[PROJECTID\]/$PROJECTID/g" ./backend-deployment.yaml
+sed -i -e "s/PROJECTID/$PROJECTID/g" ./frontend-deployment.yaml
+sed -i -e "s/PROJECTID/$PROJECTID/g" ./backend-deployment.yaml
 kubectl create -f ./frontend-deployment.yaml
 kubectl create -f ./backend-deployment.yaml
 kubectl create -f ./frontend-service.yaml
