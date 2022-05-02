@@ -17,7 +17,7 @@ $ bash deploy.sh <PROJECT-ID> <BUCKET-NAME>
 ## To access the application
 ```bash
 $ gcloud container clusters get-credentials quiz-cluster --region=us-central1-a
-$ kubectl get svc test -n default -ojsonpath="{.status.loadBalancer.ingress[].ip}"      
+$ kubectl get quiz-frontend test -n default -ojsonpath="{.status.loadBalancer.ingress[].ip}"      
 34.71.195.172         
 ```
 ## Local Development
