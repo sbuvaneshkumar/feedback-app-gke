@@ -10,7 +10,7 @@ $ gcloud config set project <PROJECT-ID>
 ```bash
 $ gsutil mb gs://<BUCKET-NAME>
 ```
-## Deployment to Google cloud
+## Deploy to Google cloud
 ```bash
 $ bash deploy.sh <PROJECT-ID> <BUCKET-NAME> 
 ```
@@ -20,5 +20,9 @@ $ gcloud container clusters get-credentials quiz-cluster --region=us-central1-a
 $ kubectl get svc test -n default -ojsonpath="{.status.loadBalancer.ingress[].ip}"      
 34.71.195.172         
 ```
+## Local Development
+The apps can be deployed locally by leveraging cloud spanner emulator.
+For reference: https://cloud.google.com/spanner/docs/emulator 
+
 ### Reference
 https://www.qwiklabs.com/catalog_lab/978 
