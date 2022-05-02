@@ -1,7 +1,7 @@
 
 
 import os
-project_id = 'concrete-envoy-213218'
+project_id = 'PROJECTID'
 bucket_name = os.getenv('GCLOUD_BUCKET')
 
 from google.cloud import storage

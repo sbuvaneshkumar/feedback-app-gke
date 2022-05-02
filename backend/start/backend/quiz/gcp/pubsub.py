@@ -2,7 +2,7 @@
 import json
 import logging
 import os
-project_id = 'concrete-envoy-213218'
+project_id = 'PROJECTID'
 
 #  Load the Cloud Pub/Sub module 
 

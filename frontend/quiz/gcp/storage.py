@@ -1,8 +1,8 @@
 
 
 import os
-project_id = 'concrete-envoy-213218'
-bucket_name ='testy-bucks'
+project_id = 'PROJECTID'
+bucket_name ='BUCKET_NAME'
 
 from google.cloud import storage
 

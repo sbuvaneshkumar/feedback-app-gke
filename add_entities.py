@@ -4,7 +4,7 @@ import os
 
 from google.cloud import datastore
 
-project_id = 'concrete-envoy-213218'
+project_id = 'PROJECTID'
 
 
 """

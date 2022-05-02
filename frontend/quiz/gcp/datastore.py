@@ -1,6 +1,6 @@
 
 import os
-project_id = 'concrete-envoy-213218'
+project_id = 'PROJECTID'
 
 from flask import current_app
 from google.cloud import datastore

@@ -8,8 +8,8 @@ gcloud app create --region "us-central"
 echo "Creating bucket: gs://$DEVSHELL_PROJECT_ID-media"
 gsutil mb gs://$DEVSHELL_PROJECT_ID-media
 
-echo "Exporting concrete-envoy-213218 and GCLOUD_BUCKET"
-export concrete-envoy-213218=$DEVSHELL_PROJECT_ID
+echo "Exporting PROJECTID and GCLOUD_BUCKET"
+export PROJECTID=$DEVSHELL_PROJECT_ID
 export GCLOUD_BUCKET=$DEVSHELL_PROJECT_ID-media
 
 echo "Creating virtual environment"
