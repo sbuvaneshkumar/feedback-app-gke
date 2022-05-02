@@ -36,7 +36,7 @@ gcloud iam service-accounts keys create key.json --iam-account=quiz-account@$PRO
 export GOOGLE_APPLICATION_CREDENTIALS=key.json
 
 echo "Setting quiz-account IAM Role"
-gcloud projects add-iam-policy-binding $PROJECTID --member serviceAccount:quiz-account@$DEVSHELL_PROJECT_ID.iam.gserviceaccount.com --role roles/owner
+gcloud projects add-iam-policy-binding $PROJECTID --member serviceAccount:quiz-account@$PROJECTID.iam.gserviceaccount.com --role roles/owner
 
 echo "Creating Cloud Pub/Sub topic"
 gcloud beta pubsub topics create feedback
