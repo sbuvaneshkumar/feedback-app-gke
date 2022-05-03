@@ -1,42 +1,28 @@
 #!/bin/bash
 
 # EVN's
-# PROJECTID
-PROJECTID=$1
+PROJECT_ID=$1
 BUCKET_NAME=$2
 
-find . -type f -exec sed -i "s/PROJECTID/$PROJECTID/g" {} \;
+find . -type f -exec sed -i "s/PROJECTID/$PROJECT_ID/g" {} \;
 sed -i "s/BUCKET_NAME/$BUCKET_NAME/g" frontend/quiz/gcp/storage.py
 
 echo "Creating Datastore/App Engine instance"
 gcloud app create --region "us-central"
 
-echo "Creating bucket: gs://$PROJECTID-media"
-gsutil mb gs://$PROJECTID-media
+echo "Creating bucket: gs://$PROJECT_ID-media"
+gsutil mb gs://$PROJECT_ID-media
 
-echo "Exporting PROJECTID and GCLOUD_BUCKET"
-export PROJECTID=$PROJECTID
-export GCLOUD_BUCKET=$PROJECTID-media
-
-echo "Creating virtual environment"
-mkdir ~/venvs
-virtualenv ~/venvs/developingapps
-source ~/venvs/developingapps/bin/activate
-
-echo "Installing Python libraries"
-pip install --upgrade pip
-pip install -r requirements.txt
-
-echo "Creating Datastore entities"
-python add_entities.py
+echo "Exporting GCLOUD_BUCKET"
+export GCLOUD_BUCKET=$PROJECT_ID-media
 
 echo "Creating quiz-account Service Account"
 gcloud iam service-accounts create quiz-account --display-name "Quiz Account"
-gcloud iam service-accounts keys create key.json --iam-account=quiz-account@$PROJECTID.iam.gserviceaccount.com
+gcloud iam service-accounts keys create key.json --iam-account=quiz-account@$PROJECT_ID.iam.gserviceaccount.com
 export GOOGLE_APPLICATION_CREDENTIALS=key.json
 
 echo "Setting quiz-account IAM Role"
-gcloud projects add-iam-policy-binding $PROJECTID --member serviceAccount:quiz-account@$PROJECTID.iam.gserviceaccount.com --role roles/owner
+gcloud projects add-iam-policy-binding $PROJECT_ID --member serviceAccount:quiz-account@$PROJECT_ID.iam.gserviceaccount.com --role roles/owner
 
 echo "Creating Cloud Pub/Sub topic"
 gcloud beta pubsub topics create feedback
@@ -51,14 +37,12 @@ gcloud container clusters create quiz-cluster --zone us-central1-a --scopes clou
 gcloud container clusters get-credentials quiz-cluster --zone us-central1-a
 
 echo "Building Containers"
-gcloud builds submit --timeout=1h -t gcr.io/$PROJECTID/quiz-frontend ./frontend/
-gcloud builds submit --timeout=1h -t gcr.io/$PROJECTID/quiz-backend ./backend/
+gcloud builds submit --timeout=1h -t gcr.io/$PROJECT_ID/quiz-frontend ./frontend/
+gcloud builds submit --timeout=1h -t gcr.io/$PROJECT_ID/quiz-backend ./backend/
 
 echo "Deploying to Container Engine"
-sed -i -e "s/PROJECTID/$PROJECTID/g" ./frontend-deployment.yaml
-sed -i -e "s/PROJECTID/$PROJECTID/g" ./backend-deployment.yaml
 kubectl create -f ./frontend-deployment.yaml
 kubectl create -f ./backend-deployment.yaml
 kubectl create -f ./frontend-service.yaml
 
-echo "Project ID: $PROJECTID"
+echo "Project ID: $PROJECT_ID"
