@@ -24,5 +24,5 @@ $ kubectl get svc quiz-frontend -n default -ojsonpath="{.status.loadBalancer.ing
 The apps can be deployed locally by leveraging cloud spanner emulator.
 For reference: https://cloud.google.com/spanner/docs/emulator 
 
-### Reference
+### Application Reference
 https://www.qwiklabs.com/catalog_lab/978 
