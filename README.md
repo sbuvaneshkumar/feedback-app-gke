@@ -6,8 +6,8 @@ An app which leverages Cloud spanner, GKE, Cloud Build and other Google cloud se
 $ gcloud auth login 
 $ gcloud auth application-default login 
 $ gcloud config set project <PROJECT_ID>
-
-2. Replace the project ID and bucket name in variable file in infrastructure/terraform/variables.tf
+```
+2. Replace the project ID and bucket name in variable file in `infrastructure/terraform/variables.tf`
 
 3. Deploy the infrastructure
 ```bash
