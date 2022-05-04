@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: quiz-backend
-        image: gcr.io//PROJECTID/quiz-backend
+        image: gcr.io/PROJECTID/quiz-backend
         imagePullPolicy: Always
         env:
           - name: PROJECTID
