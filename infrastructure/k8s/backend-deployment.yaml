@@ -1,0 +1,27 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quiz-backend
+  labels:
+    app: quiz-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: quiz-app
+  template:
+    metadata:
+      labels:
+        app: quiz-app
+        tier: backend
+    spec:
+      containers:
+      - name: quiz-backend
+        image: gcr.io//PROJECTID/quiz-backend
+        imagePullPolicy: Always
+        env:
+          - name: PROJECTID
+            value: PROJECTID
+          - name: GCLOUD_BUCKET
+            value: PROJECTID-media
