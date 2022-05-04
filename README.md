@@ -20,5 +20,10 @@ $ terraform apply
 $ gcloud container clusters get-credentials my-gke-cluster --region=us-central1
 $ kubectl get svc quiz-frontend -n default -ojsonpath="{.status.loadBalancer.ingress[].ip}" 
 ```
+## TODO: Improvements
+1. Create VPC and deploy the resources in dedicated network, at this moment, it is using default VPC
+2. Modularize the Terraform codebase
+3. Implement CI
+
 ### Application source reference
 https://www.qwiklabs.com/focuses/1107?parent=catalog
