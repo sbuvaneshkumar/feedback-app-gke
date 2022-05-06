@@ -20,10 +20,17 @@ $ terraform apply
 $ gcloud container clusters get-credentials my-gke-cluster --region=us-central1
 $ kubectl get svc quiz-frontend -n default -ojsonpath="{.status.loadBalancer.ingress[].ip}" 
 ```
+## Note
+There is ongoing bug in `kubectl` terraform provider, where you might experience following error at the end of `terraform apply`.
+```bash
+Error: Provider produced inconsistent final plan
+```
+To resolve this, rerun the `terraform apply`, the second run should resolve the issue.
+
 ## TODO: Improvements
 1. Create VPC and deploy the resources in dedicated network, at this moment, it is using default VPC
 2. Modularize the Terraform codebase
 3. Implement CI
-
+4. Replace kubectl provider with helm and use helm charts
 ### Application source reference
 https://www.qwiklabs.com/focuses/1107?parent=catalog
